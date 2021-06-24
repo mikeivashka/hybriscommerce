@@ -1,0 +1,9 @@
+#Ant properties
+#Fri Feb 07 22:21:12 CET 2020
+builddate=20200207 2218
+description=trainingtest
+name=trainingtest
+releasedate=20181129 1417
+vendor=hybris
+version=1811.19
+version.api=1811

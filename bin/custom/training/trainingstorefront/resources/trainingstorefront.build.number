@@ -1,0 +1,9 @@
+#Ant properties
+#Fri Feb 07 22:21:15 CET 2020
+builddate=20200207 2218
+description=trainingstorefront
+name=trainingstorefront
+releasedate=20181129 1417
+vendor=hybris
+version=1811.19
+version.api=1811
