@@ -23,6 +23,7 @@
 
 
 
+<requires-extension name="questions"/>
 <requires-extension name="commerceorgsamplesaddon"/>
 <requires-extension name="promotionenginesamplesaddon"/>
 <requires-extension name="smarteditaddon"/>

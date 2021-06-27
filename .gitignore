@@ -17,3 +17,5 @@ config/tomcat/conf/web.xml
 config/solr/*
 !config/solr/instances
 config/solr/instances/**/hsperfdata*
+/**/backoffice/*_bof.jar
+**/WEB-INF/lib/addon-*.jar

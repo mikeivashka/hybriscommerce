@@ -2,6 +2,8 @@
 
 <groups xmlns="http://www.isdc.ro/wro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
    <group name="addons_responsive">
+      <js>/_ui/addons/assistedservicepromotionaddon/responsive/common/js/assistedservicepromotionaddon.js</js>
+      <css>/_ui/addons/assistedservicepromotionaddon/responsive/common/css/assistedservicepromotionaddon.css</css>
       <js>/_ui/addons/assistedservicestorefront/responsive/common/js/assistedservicestorefront.js</js>
       <js>/_ui/addons/assistedservicestorefront/responsive/common/js/jquery.tablesorter.pager.js</js>
       <js>/_ui/addons/assistedservicestorefront/responsive/common/js/jquery.tablesorter.min.js</js>
@@ -17,8 +19,6 @@
       <js>/_ui/addons/smarteditaddon/shared/common/js/adjustComponentRenderingToSE.js</js>
       <js>/_ui/addons/smarteditaddon/responsive/common/js/smarteditaddon.js</js>
       <css>/_ui/addons/smarteditaddon/responsive/common/css/smarteditaddon.css</css>
-      <js>/_ui/addons/assistedservicepromotionaddon/responsive/common/js/assistedservicepromotionaddon.js</js>
-      <css>/_ui/addons/assistedservicepromotionaddon/responsive/common/css/assistedservicepromotionaddon.css</css>
       <js>/_ui/addons/customerticketingaddon/responsive/common/js/customerticketingaddon.js</js>
       <css>/_ui/addons/customerticketingaddon/responsive/common/css/customerticketingaddon.css</css>
       <js>/_ui/addons/orderselfserviceaddon/responsive/common/js/orderselfserviceaddon.js</js>
@@ -27,6 +27,8 @@
       <css>/_ui/addons/orderselfserviceaddon/responsive/common/css/orderselfserviceaddon.css</css>
       <js>/_ui/addons/adaptivesearchsamplesaddon/responsive/common/js/adaptivesearchsamplesaddon.js</js>
       <css>/_ui/addons/adaptivesearchsamplesaddon/responsive/common/css/adaptivesearchsamplesaddon.css</css>
+      <js>/_ui/addons/questions/responsive/common/js/questions.js</js>
+      <css>/_ui/addons/questions/responsive/common/css/questions.css</css>
    </group>
 </groups>
 

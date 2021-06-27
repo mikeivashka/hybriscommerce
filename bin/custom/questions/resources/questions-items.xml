@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+    <relations>
+        <relation code="Questions2Product" localized="false">
+            <sourceElement qualifier="questions" type="Question" cardinality="many" collectiontype="set"/>
+            <targetElement qualifier="product" type="Product" cardinality="one"/>
+        </relation>
+    </relations>
+
+    <itemtypes>
+        <itemtype code="Question">
+            <deployment table="Questions" typecode="30268"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="question" type="java.lang.String">
+                    <modifiers optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+				<attribute qualifier="questionAuthor" type="Customer">
+					<modifiers optional="false" initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+                <attribute qualifier="answer" type="java.lang.String">
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="answerAuthor" type="Customer">
+                    <modifiers optional="true" />
+                    <persistence type="property"/>
+                </attribute>
+			</attributes>
+        </itemtype>
+    </itemtypes>
+</items>

@@ -26,6 +26,7 @@
 	      parent="abstractCoreSystemSetup">
 		<property name="coreDataImportService" ref="coreDataImportService"/>
 		<property name="sampleDataImportService" ref="sampleDataImportService"/>
-	</bean>
+        <property name="importService" ref="importService"/>
+    </bean>
 
 </beans>

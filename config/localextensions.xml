@@ -9,6 +9,8 @@
         <extension dir="${HYBRIS_BIN_DIR}/custom/training/traininginitialdata"/>
         <extension dir="${HYBRIS_BIN_DIR}/custom/training/trainingstorefront"/>
         <extension dir="${HYBRIS_BIN_DIR}/custom/training/trainingtest"/>
+        <extension dir="${HYBRIS_BIN_DIR}/custom/questions"/>
+        <extension name="addonsupport"/>
         <extension name='adaptivesearchsolr'/>
         <extension name='adaptivesearchbackoffice'/>
         <extension name='adaptivesearchsamplesaddon'/>

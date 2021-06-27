@@ -1,0 +1,4 @@
+$catalogVersion=catalogVersion(catalog(id[default='electronicsProductCatalog']), version[default='Staged'])[unique=true,default='electronicsProductCatalog:Staged']
+INSERT_UPDATE Question; code[unique = true]; product(code, $catalogVersion); question                  ; questionAuthor(uid); answer                                                 ; answerAuthor(uid)
+                      ; A0001              ; 3514519:electronicsProductCatalog:Staged           ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0002              ; 3514519:electronicsProductCatalog:Online           ; Is it suitable for macro? ; women@hybris.com   ;                                                        ;
