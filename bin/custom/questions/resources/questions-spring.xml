@@ -42,5 +42,26 @@
 	<bean id="questionsSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener"  >
 		<property name="extensionName" value="questions" />
 	</bean>
+	<bean id="questionPopulator" class="de.hybris.training.populator.QuestionPopulator">
+		<property name="customerPopulator" ref="customerPopulator"/>
+	</bean>
+	<bean id="questionReversePopulator" class="de.hybris.training.populator.QuestionReversePopulator">
+		<property name="customerPopulator" ref="customerReversePopulator"/>
+	</bean>
+	<bean id="questionConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
+		<property name="populators">
+			<list>
+				<ref bean="questionPopulator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="productQuestionPopulator" class="de.hybris.training.populator.ProductQuestionPopulator">
+		<property name="questionConverter" ref="questionConverter"/>
+	</bean>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="productQuestionPopulator"/>
+	</bean>
 
 </beans>

@@ -23,5 +23,13 @@
 		<property name="flag" type="boolean"/>
 	</bean>
 	-->
-
+	<bean class="de.hybris.training.data.QuestionData">
+		<property name="question" type="String"/>
+		<property name="answer" type="String"/>
+		<property name="questionAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+		<property name="answerAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData" />
+	</bean>
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="questions" type="java.util.List&lt;de.hybris.training.data.QuestionData&gt;"/>
+	</bean>
 </beans>

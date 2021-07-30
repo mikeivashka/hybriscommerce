@@ -48,5 +48,19 @@
                 </attribute>
 			</attributes>
         </itemtype>
+        <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent" jaloclass="de.hybris.training.jalo.QuestionsCMSComponent">
+            <description>It represents paragraph component with product questions attribute.</description>
+            <attributes>
+                <attribute qualifier="numberOfQuestionsToShow" type="java.lang.Integer">
+                    <defaultvalue>3</defaultvalue>
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="fontSize" type="java.lang.Integer">
+                    <modifiers optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
     </itemtypes>
 </items>

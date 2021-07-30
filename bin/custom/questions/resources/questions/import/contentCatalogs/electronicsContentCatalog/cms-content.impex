@@ -8,5 +8,8 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-$contentCatalog=electronicsContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$contentCatalog = electronicsContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE QuestionsCMSComponent; $contentCV[unique = true]; uid[unique = true]    ; name                  ; &componentRef         ; fontSize;
+                                   ;                          ; QuestionsCMSComponent ; QuestionsCMSComponent ; QuestionsCMSComponent ; 14      ;
