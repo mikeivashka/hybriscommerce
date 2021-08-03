@@ -10,9 +10,17 @@
  */
 package de.hybris.training.controllers;
 
+import de.hybris.training.model.QuestionsCMSComponentModel;
+
 /**
+ *
  */
-public interface QuestionsControllerConstants
-{
-	// implement here controller constants used by this extension
+public interface QuestionsControllerConstants {
+    interface Actions {
+        interface Cms {
+            String _Prefix = "/view/"; // NOSONAR
+            String _Suffix = "Controller"; // NOSONAR
+            String QuestionsComponent = _Prefix + QuestionsCMSComponentModel._TYPECODE + _Suffix;
+        }
+    }
 }

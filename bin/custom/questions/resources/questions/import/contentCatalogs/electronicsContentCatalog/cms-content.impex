@@ -13,3 +13,13 @@ $contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCa
 
 INSERT_UPDATE QuestionsCMSComponent; $contentCV[unique = true]; uid[unique = true]    ; name                  ; &componentRef         ; fontSize;
                                    ;                          ; QuestionsCMSComponent ; QuestionsCMSComponent ; QuestionsCMSComponent ; 14      ;
+
+INSERT_UPDATE ContentSlotName; name[unique = true]; template(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; QuestionsSlotName  ;                                                                                 ; QuestionsCMSComponent    ; wide
+
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]   ; name           ; active; cmsComponents(&componentRef)
+                         ;                          ; QuestionsContentSlot ; Questions slot ; true  ; QuestionsCMSComponent
+
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                          ; position[unique = true]; pageTemplate(uid, $contentCV)[unique = true][default = 'ProductDetailsPageTemplate']; contentSlot(uid, $contentCV)[unique = true]
+                                    ;                          ; QuestionsContentSlot-ProductDetailsTemplate ; QuestionsSlotName      ;                                                                                     ; QuestionsContentSlot

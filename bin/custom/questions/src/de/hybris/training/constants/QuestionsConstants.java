@@ -17,6 +17,7 @@ package de.hybris.training.constants;
 public final class QuestionsConstants extends GeneratedQuestionsConstants
 {
 	public static final String EXTENSIONNAME = "questions";
+	public static final String QUESTIONS_COUNT="questionsCount";
 
 	private QuestionsConstants()
 	{

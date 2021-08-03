@@ -31,5 +31,6 @@
 	</bean>
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="questions" type="java.util.List&lt;de.hybris.training.data.QuestionData&gt;"/>
+		<property name="questionsCount" type="int"/>
 	</bean>
 </beans>

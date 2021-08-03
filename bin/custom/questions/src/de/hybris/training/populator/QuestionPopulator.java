@@ -17,10 +17,12 @@ public class QuestionPopulator implements Populator<QuestionModel, QuestionData>
         CustomerData customerData = new CustomerData();
         customerPopulator.populate(questionModel.getQuestionAuthor(), customerData);
         questionData.setQuestionAuthor(customerData);
-        questionData.setAnswer(questionModel.getAnswer());
-        customerData = new CustomerData();
-        customerPopulator.populate(questionModel.getAnswerAuthor(), customerData);
-        questionData.setAnswerAuthor(customerData);
+        if (questionModel.getAnswer() != null) {
+            questionData.setAnswer(questionModel.getAnswer());
+            customerData = new CustomerData();
+            customerPopulator.populate(questionModel.getAnswerAuthor(), customerData);
+            questionData.setAnswerAuthor(customerData);
+        }
     }
 
     @Required

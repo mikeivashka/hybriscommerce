@@ -10,58 +10,65 @@
  license agreement you entered into with SAP.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
-           
-    <context:annotation-config/> 
 
-	<bean id="questionsCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
-		<property name="supportedChannels">
-			<list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
-				<value>B2C</value>
-				<!--
-								<value>B2B</value>
-				-->
-			</list>
-		</property>
-		<property name="addonExtensionMetadata">
-			<bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
-				<property name="suffixChannel" value="false"/>
-				<property name="baseExtensionName" value="questions"/>
-			</bean>
-		</property>
-	</bean>
+    <context:annotation-config/>
 
-	<bean id="questionsSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener"  >
-		<property name="extensionName" value="questions" />
-	</bean>
-	<bean id="questionPopulator" class="de.hybris.training.populator.QuestionPopulator">
-		<property name="customerPopulator" ref="customerPopulator"/>
-	</bean>
-	<bean id="questionReversePopulator" class="de.hybris.training.populator.QuestionReversePopulator">
-		<property name="customerPopulator" ref="customerReversePopulator"/>
-	</bean>
-	<bean id="questionConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.ProductData"/>
-		<property name="populators">
-			<list>
-				<ref bean="questionPopulator"/>
-			</list>
-		</property>
-	</bean>
-	<bean id="productQuestionPopulator" class="de.hybris.training.populator.ProductQuestionPopulator">
-		<property name="questionConverter" ref="questionConverter"/>
-	</bean>
-	<bean parent="modifyPopulatorList">
-		<property name="list" ref="productConverter"/>
-		<property name="add" ref="productQuestionPopulator"/>
-	</bean>
+    <bean id="questionsCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
+        <property name="supportedChannels">
+            <list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+                <value>B2C</value>
+                <!--
+                                <value>B2B</value>
+                -->
+            </list>
+        </property>
+        <property name="addonExtensionMetadata">
+            <bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
+                <property name="suffixChannel" value="false"/>
+                <property name="baseExtensionName" value="questions"/>
+            </bean>
+        </property>
+    </bean>
 
+    <bean id="questionsSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener">
+        <property name="extensionName" value="questions"/>
+    </bean>
+    <bean id="questionPopulator" class="de.hybris.training.populator.QuestionPopulator">
+        <property name="customerPopulator" ref="customerPopulator"/>
+    </bean>
+    <bean id="questionReversePopulator" class="de.hybris.training.populator.QuestionReversePopulator">
+        <property name="customerPopulator" ref="customerReversePopulator"/>
+    </bean>
+    <bean id="questionConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.training.data.QuestionData"/>
+        <property name="populators">
+            <list>
+                <ref bean="questionPopulator"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="productQuestionPopulator" class="de.hybris.training.populator.ProductQuestionPopulator">
+        <property name="questionConverter" ref="questionConverter"/>
+    </bean>
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="productConverter"/>
+        <property name="add" ref="productQuestionPopulator"/>
+    </bean>
+    <bean id="productQuestionsCountValueProvider"
+          class="de.hybris.training.search.solrfacetsearch.provider.ProductQuestionsCountValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+    </bean>
+    <alias name="questionsCountSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+    <bean id="questionsCountSearchResultProductPopulator"
+          class="de.hybris.training.populator.QuestionsCountSearchResultProductPopulator"
+          parent="variantCommerceSearchResultProductPopulator"/>
 </beans>
