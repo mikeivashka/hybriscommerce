@@ -46,7 +46,7 @@
         <c:if test="${not empty product.summary}">
             <div class="product__listing--description">${ycommerce:sanitizeHTML(product.summary)}</div>
         </c:if>
-        <c:if test="${product.questionsCount > 0}">
+        <c:if test="${product.questionsCount != '0'}">
             <div>
                 <img src="${fn:escapeXml(commonResourcePath)}/images/information.png" height="20px">
                 <b>Questions: ${product.questionsCount}</b>

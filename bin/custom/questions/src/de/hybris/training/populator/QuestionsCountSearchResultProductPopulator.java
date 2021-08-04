@@ -12,9 +12,9 @@ public class QuestionsCountSearchResultProductPopulator extends SearchResultVari
         super.populate(source, target);
         final Object obj = this.getValue(source, QUESTIONS_COUNT);
         if (obj != null) {
-            target.setQuestionsCount(this.<Integer>getValue(source, QUESTIONS_COUNT));
+            target.setQuestionsCount(this.getValue(source, QUESTIONS_COUNT));
         } else {
-            target.setQuestionsCount(0);
+            target.setQuestionsCount(String.valueOf(0));
         }
     }
 }

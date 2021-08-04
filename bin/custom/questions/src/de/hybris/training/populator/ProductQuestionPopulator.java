@@ -22,7 +22,7 @@ public class ProductQuestionPopulator implements Populator<ProductModel, Product
 
     @Override
     public void populate(ProductModel product, ProductData productData) throws ConversionException {
-        productData.setQuestionsCount(product.getQuestions().size());
+        productData.setQuestionsCount(String.valueOf(product.getQuestions().size()));
         productData.setQuestions(product.getQuestions().stream()
                 .map(questionConverter::convert)
                 .collect(Collectors.toList())

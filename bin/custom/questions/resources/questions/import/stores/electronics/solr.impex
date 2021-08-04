@@ -1,26 +1,66 @@
-    # -----------------------------------------------------------------------
-    # [y] hybris Platform
-    #
-    # Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
-    #
-    # This software is the confidential and proprietary information of SAP
-    # ("Confidential Information"). You shall not disclose such Confidential
-    # Information and shall use it only in accordance with the terms of the
-    # license agreement you entered into with SAP.
-    # -----------------------------------------------------------------------
-    $productCatalog = electronicsProductCatalog
-    $catalogVersions = catalogVersions(catalog(id), version);
-    $serverConfigName = electronicsSolrServerConfig
-    $indexConfigName = electronicsSolrIndexConfig
-    $searchConfigName = electronicsPageSize
-    $facetSearchConfigName = electronicsIndex
-    $facetSearchConfigDescription = Electronics Solr Index
-    $searchIndexNamePrefix = electronics
-    $solrIndexedType = electronicsProductType
-    $indexBaseSite = electronics
-    $indexLanguages = ja, en, de, zh
-    $indexCurrencies = JPY, USD
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$productCatalog = electronicsProductCatalog
+$catalogVersions = catalogVersions(catalog(id), version);
+$serverConfigName = electronicsSolrServerConfig
+$indexConfigName = electronicsSolrIndexConfig
+$searchConfigName = electronicsPageSize
+$facetSearchConfigName = electronicsIndex
+$facetSearchConfigDescription = Electronics Solr Index
+$searchIndexNamePrefix = electronics
+$solrIndexedType = electronicsProductType
+$indexBaseSite = electronics
+$indexLanguages = ja, en, de, zh
+$indexCurrencies = JPY, USD
 
 
-    INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                 ; valueProviderParameter
-                                     ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                                     ;                                    ; productQuestionsCountValueProvider ;
+INSERT_UPDATE SolrIndexerQuery; solrIndexedType(identifier)[unique = true]; identifier[unique = true]; type(code); injectCurrentDate[default = true]; injectCurrentTime[default = true]; injectLastIndexTime[default = true]; query                                                                                    ; user(uid)
+                              ; $solrIndexedType                          ; electronics-updateQuery  ; update    ;                                  ;                                  ;                                    ; "SELECT DISTINCT tbl.pk, tbl.code FROM (
+{{
+SELECT DISTINCT {p:PK} AS pk, {p:code} AS code, {p:varianttype} AS varianttype
+FROM {Product AS p LEFT JOIN CustomerReview AS cr ON {cr:product}={p:PK} }
+WHERE {p:modifiedtime} >= ?lastIndexTime OR {cr:modifiedtime} >= ?lastIndexTime
+}}
+UNION
+{{
+SELECT {p:PK}  AS pk, {p:code} AS code, {p:varianttype} AS varianttype FROM {Product AS p} WHERE {p:code} IN (
+{{
+SELECT DISTINCT {sl:productCode} FROM {StockLevel AS sl} WHERE {sl:modifiedtime} >= ?lastIndexTime
+}}
+)
+}}
+UNION
+{{
+SELECT DISTINCT {p:PK} AS pk, {p:code} AS code, {p:varianttype} AS varianttype
+FROM {Product AS p LEFT JOIN Question AS q ON {q:product}={p:PK} }
+WHERE {p:modifiedtime} >= ?lastIndexTime OR {q:modifiedtime} >= ?lastIndexTime
+}}
+) tbl WHERE (tbl.varianttype IS NULL OR tbl.varianttype NOT IN ( {{ SELECT {PK} FROM {varianttype} WHERE {code} = 'ElectronicsColorVariantProduct'}}) )
+AND tbl.code NOT IN({{ SELECT {code} FROM {GenericVariantProduct} }}) ORDER BY tbl.code" ; anonymous
+
+
+INSERT_UPDATE SolrValueRangeSet; name[unique = true] ; qualifier; type; solrValueRanges(&rangeValueRefID)
+                               ; questionsCountRange ;          ; int ; questionsCount1,questionsCount2,questionsCount3,questionsCount4,questionsCount5,questionsCount6
+
+INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
+                            ; questionsCount1 ; questionsCountRange                   ; 0                  ; 0   ; 0
+                            ; questionsCount2 ; questionsCountRange                   ; 1                  ; 1   ; 1
+                            ; questionsCount3 ; questionsCountRange                   ; 2                  ; 2   ; 2
+                            ; questionsCount4 ; questionsCountRange                   ; 3                  ; 3   ; 3
+                            ; questionsCount5 ; questionsCountRange                   ; 4                  ; 4   ; 4
+                            ; questionsCount6 ; questionsCountRange                   ; 5 or more          ; 5   ; 100000
+
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                 ; valueProviderParameter; facet; facetType(code); rangeSets(name)     ; facetSort(code); visible
+                                 ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                                     ;                                    ; productQuestionsCountValueProvider ;                       ; true ; MultiSelectOr  ; questionsCountRange ; Alpha          ; true
+
+INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet[default = true]; facetType(code); facetDisplayNameProvider; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]
+                                     ; questionsCount:$solrIndexedType                                  ;                                                                                                      ;                      ; MultiSelectOr  ;                         ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;                              ;
+

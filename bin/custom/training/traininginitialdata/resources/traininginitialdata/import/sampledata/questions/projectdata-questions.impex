@@ -1,4 +1,12 @@
-$catalogVersion=catalogVersion(catalog(id[default='electronicsProductCatalog']), version[default='Staged'])[unique=true,default='electronicsProductCatalog:Staged']
-INSERT_UPDATE Question; code[unique = true]; product(code, $catalogVersion); question                  ; questionAuthor(uid); answer                                                 ; answerAuthor(uid)
-                      ; A0001              ; 3514519:electronicsProductCatalog:Staged           ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
-                      ; A0002              ; 3514519:electronicsProductCatalog:Online           ; Is it suitable for macro? ; women@hybris.com   ;                                                        ;
+$catalogVersion = catalogVersion(catalog(id[default='electronicsProductCatalog']), version[default='Staged'])[unique=true, default='electronicsProductCatalog:Staged']
+INSERT_UPDATE Question; code[unique = true]; product(code, $catalogVersion)           ; question                  ; questionAuthor(uid); answer                                                 ; answerAuthor(uid)
+                      ; A0001              ; 3514519:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0002              ; 3514519:electronicsProductCatalog:Online ; Is it suitable for macro? ; women@hybris.com   ;                                                        ;
+                      ; A0003              ; 1990255:electronicsProductCatalog:Online ; Is it suitable for macro? ; women@hybris.com   ;                                                        ;
+                      ; A0004              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0005              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0006              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0007              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0008              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0009              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
+                      ; A0010              ; 3514521:electronicsProductCatalog:Online ; Is it convenient to use?  ; men@hybris.com     ; Battery capacity is really low, other aspects are cool ; women@hybris.com
