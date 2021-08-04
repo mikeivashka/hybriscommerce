@@ -64,3 +64,10 @@ INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; n
 INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet[default = true]; facetType(code); facetDisplayNameProvider; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]
                                      ; questionsCount:$solrIndexedType                                  ;                                                                                                      ;                      ; MultiSelectOr  ;                         ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;                              ;
 
+INSERT_UPDATE SolrSort; indexedType(identifier)[unique = true]; code[unique = true] ; useBoost
+                      ; $solrIndexedType                      ; questionsCount-asc  ; false
+                      ; $solrIndexedType                      ; questionsCount-desc ; false
+
+INSERT_UPDATE SolrSortField; sort(indexedType(identifier), code)[unique = true]; fieldName[unique = true]; ascending[unique = true]
+                           ; $solrIndexedType:questionsCount-asc               ; questionsCount          ; true
+                           ; $solrIndexedType:questionsCount-desc              ; questionsCount          ; false

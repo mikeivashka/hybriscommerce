@@ -11,3 +11,7 @@ $lang = en
 # Solr Indexed Property
 UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; displayName[lang = $lang]
                           ; $solrIndexedType                          ; questionsCount     ; "Questions"
+
+INSERT_UPDATE SolrSort; indexedType(identifier)[unique = true]; code[unique = true] ; name[lang = $lang]
+                      ; $solrIndexedType                      ; questionsCount-asc  ; Questions ascending
+                      ; $solrIndexedType                      ; questionsCount-desc ; Questions descending
