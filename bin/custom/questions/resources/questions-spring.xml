@@ -69,4 +69,11 @@
     <bean id="questionsCountSearchResultProductPopulator"
           class="de.hybris.training.populator.QuestionsCountSearchResultProductPopulator"
           parent="variantCommerceSearchResultProductPopulator"/>
+    <bean id="hybridCustomerPrepareInterceptor" class="de.hybris.training.interceptor.HybridsCustomerPrepareInterceptor">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="hybridCustomersPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="hybridCustomerPrepareInterceptor"/>
+        <property name="typeCode" value="Customer"/>
+    </bean>
 </beans>

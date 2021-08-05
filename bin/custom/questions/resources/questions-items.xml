@@ -34,21 +34,22 @@
                     <modifiers optional="false" initial="true"/>
                     <persistence type="property"/>
                 </attribute>
-				<attribute qualifier="questionAuthor" type="Customer">
-					<modifiers optional="false" initial="true"/>
-					<persistence type="property"/>
-				</attribute>
+                <attribute qualifier="questionAuthor" type="Customer">
+                    <modifiers optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
                 <attribute qualifier="answer" type="java.lang.String">
                     <modifiers optional="true"/>
                     <persistence type="property"/>
                 </attribute>
                 <attribute qualifier="answerAuthor" type="Customer">
-                    <modifiers optional="true" />
+                    <modifiers optional="true"/>
                     <persistence type="property"/>
                 </attribute>
-			</attributes>
+            </attributes>
         </itemtype>
-        <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent" jaloclass="de.hybris.training.jalo.QuestionsCMSComponent">
+        <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent"
+                  jaloclass="de.hybris.training.jalo.QuestionsCMSComponent">
             <description>It represents paragraph component with product questions attribute.</description>
             <attributes>
                 <attribute qualifier="numberOfQuestionsToShow" type="java.lang.Integer">
@@ -62,5 +63,14 @@
                 </attribute>
             </attributes>
         </itemtype>
+        <itemtype code="Customer" autocreate="false" generate="false">
+            <attributes>
+                <attribute qualifier="isInternal" type="java.lang.Boolean">
+                    <defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
     </itemtypes>
+
 </items>

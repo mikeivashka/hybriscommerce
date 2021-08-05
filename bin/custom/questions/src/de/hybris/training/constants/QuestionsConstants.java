@@ -14,15 +14,14 @@ package de.hybris.training.constants;
  * Global class for all Questions constants. You can add global constants for your extension into this class.
  */
 @SuppressWarnings("deprecation")
-public final class QuestionsConstants extends GeneratedQuestionsConstants
-{
-	public static final String EXTENSIONNAME = "questions";
-	public static final String QUESTIONS_COUNT="questionsCount";
+public final class QuestionsConstants extends GeneratedQuestionsConstants {
+    public static final String EXTENSIONNAME = "questions";
+    public static final String QUESTIONS_COUNT = "questionsCount";
+    public static final String HYBRIDS_USER_GROUP = "hybridsgroup";
 
-	private QuestionsConstants()
-	{
-		//empty to avoid instantiating this constant class
-	}
+    private QuestionsConstants() {
+        //empty to avoid instantiating this constant class
+    }
 
-	// implement here constants used by this extension
+    // implement here constants used by this extension
 }

@@ -8,8 +8,11 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-$regulargroup=regulargroup
-$customergroup=customergroup
+$regulargroup = regulargroup
+$customergroup = customergroup
+$defaultPassword = 12341234
+$hybridsgroup = hybridsgroup
 
-$defaultPassword=12341234
+INSERT_UPDATE Usergroup; uid[unique = true]; groups(uid)[mode = append]
+                       ; $hybridsgroup     ; $customergroup
 
