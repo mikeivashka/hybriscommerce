@@ -76,4 +76,14 @@
         <property name="interceptor" ref="hybridCustomerPrepareInterceptor"/>
         <property name="typeCode" value="Customer"/>
     </bean>
+    <bean id="questionsDao" class="de.hybris.training.dao.impl.DefaultQuestionsDao">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    <bean id="questionsService" class="de.hybris.training.service.impl.DefaultQuestionsService">
+        <property name="questionsDao" ref="questionsDao"/>
+    </bean>
+    <bean id="sendNewQuestionsJob" class="de.hybris.training.job.SendNewQuestionsJob" parent="abstractJobPerformable">
+        <property name="questionsService" ref="questionsService"/>
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
 </beans>

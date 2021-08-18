@@ -71,6 +71,14 @@
                 </attribute>
             </attributes>
         </itemtype>
+        <itemtype code="SendNewQuestionsCronJob" extends="CronJob">
+            <attributes>
+                <attribute qualifier="lastExecutionTime" type="java.util.Date">
+                    <defaultvalue>new java.util.Date(0L)</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
     </itemtypes>
 
 </items>
