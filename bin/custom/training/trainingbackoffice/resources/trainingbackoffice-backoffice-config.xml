@@ -10,24 +10,101 @@
  license agreement you entered into with SAP.
 -->
 <config xmlns="http://www.hybris.com/cockpit/config"
-	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+        xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+        xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+        xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+        xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+        xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+        xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config">
 
-	<context merge-by="module" component="editorareaactions" type="Consignment">
-		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
-			<y:group qualifier="common">
-				<y:label>actiongroup.common</y:label>				
-				<y:action action-id="org.training.backoffice.actions.confirmpickupaction" property="currentObject"/>				
-			</y:group>
-		</y:actions>
+    <context merge-by="module" component="editorareaactions" type="Consignment">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:label>actiongroup.common</y:label>
+                <y:action action-id="org.training.backoffice.actions.confirmpickupaction" property="currentObject"/>
+            </y:group>
+        </y:actions>
     </context>
 
-	<!-- Notification Area-->
-	<context component="notification-area">
-	    <na:notification-area>	        
-	        <na:notifications eventType="trainingbackoffice.confirmpickup.event" level="SUCCESS">
-	            <na:message>hmc.action.confirmpickup.success</na:message>
-	        </na:notifications>
-	   </na:notification-area>
-	</context>
+    <context component="explorer-tree" merge-by="module" parent="auto">
+        <explorer-tree:explorer-tree>
+            <explorer-tree:navigation-node id="questionsAddon">
+                <explorer-tree:type-node code="Question" id="questions"/>
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+    <context type="Question" component="listview" merge-by="type">
+        <list-view:list-view>
+            <list-view:column qualifier="product"/>
+            <list-view:column qualifier="questionAuthor"/>
+            <list-view:column qualifier="answerAuthor"/>
+        </list-view:list-view>
+    </context>
+    <context type="Question" component="editor-area" merge-by="type">
+        <editorArea:editorArea>
+            <editorArea:essentials>
+                <editorArea:essentialSection name="hmc.essential"
+                                             description="Essential">
+                    <editorArea:attribute qualifier="product"/>
+                    <editorArea:attribute qualifier="questionAuthor"/>
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="Q&amp;A">
+                <editorArea:section name='backoffice.personalizationservices.section.attributes'>
+                    <editorArea:attribute qualifier="question"/>
+                    <editorArea:attribute qualifier="answer"/>
+                    <editorArea:attribute qualifier="answerAuthor"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context type="Question" component="advanced-search" merge-by="type">
+        <advanced-search:advanced-search>
+            <advanced-search:field-list>
+                <advanced-search:field name="product" selected="true"/>
+                <advanced-search:field name="question" selected="true"/>
+                <advanced-search:field name="questionAuthor" selected="true"/>
+            </advanced-search:field-list>
+        </advanced-search:advanced-search>
+    </context>
+    <context component="create-wizard" type="Question">
+        <wz:flow id="main" title="Question">
+            <wz:prepare id="questionPrepare">
+                <wz:initialize property="newQuestion" type="Question"/>
+            </wz:prepare>
+            <wz:step id="step1" label="Main" merge-mode="replace">
+                <wz:content id="content">
+                    <wz:property-list root="newQuestion">
+                        <wz:property qualifier="code" type="java.lang.String"/>
+                        <wz:property qualifier="product" type="Reference(Product)"
+                                     editor="com.hybris.cockpitng.editor.defaultreferenceeditor"/>
+                        <wz:property qualifier="question" type="java.lang.String"/>
+                        <wz:property qualifier="questionAuthor" type="Reference(Customer)"
+                                     editor="com.hybris.cockpitng.editor.defaultreferenceeditor"/>
+                        <wz:property qualifier="answer" type="java.lang.String"/>
+                        <wz:property qualifier="answerAuthor" type="Reference(Customer)"
+                                     editor="com.hybris.cockpitng.editor.defaultreferenceeditor"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel/>
+                    <wz:done
+                            visible="!#empty(newQuestion.code) AND !#empty(newQuestion.question) AND newQuestion.questionAuthor != null">
+                        <wz:save property="newQuestion"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+
+    </context>
+
+    <!-- Notification Area-->
+    <context component="notification-area">
+        <na:notification-area>
+            <na:notifications eventType="trainingbackoffice.confirmpickup.event" level="SUCCESS">
+                <na:message>hmc.action.confirmpickup.success</na:message>
+            </na:notifications>
+        </na:notification-area>
+    </context>
 
 </config>
