@@ -15,22 +15,23 @@
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
-	<!--
-		Example Data POJO
-	
-	<bean class="yemptypackage.data.MyPojo">
-		<property name="id" type="String"/>
-		<property name="flag" type="boolean"/>
-	</bean>
-	-->
-	<bean class="de.hybris.training.data.QuestionData">
-		<property name="question" type="String"/>
-		<property name="answer" type="String"/>
-		<property name="questionAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
-		<property name="answerAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData" />
-	</bean>
-	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="questions" type="java.util.List&lt;de.hybris.training.data.QuestionData&gt;"/>
-		<property name="questionsCount" type="String"/>
-	</bean>
+    <!--
+        Example Data POJO
+
+    <bean class="yemptypackage.data.MyPojo">
+        <property name="id" type="String"/>
+        <property name="flag" type="boolean"/>
+    </bean>
+    -->
+    <bean class="de.hybris.training.data.QuestionData">
+        <property name="question" type="String"/>
+        <property name="answer" type="String"/>
+        <property name="questionAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+        <property name="answerAuthor" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+    </bean>
+    <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+        <property name="questions" type="java.util.List&lt;de.hybris.training.data.QuestionData&gt;"/>
+        <property name="questionsCount" type="String"/>
+        <property name="warrantyYears" type="String"/>
+    </bean>
 </beans>

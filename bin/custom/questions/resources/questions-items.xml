@@ -79,6 +79,15 @@
                 </attribute>
             </attributes>
         </itemtype>
+        <itemtype code="Product" autocreate="false" generate="false">
+            <attributes>
+                <attribute qualifier="warrantyYears" type="java.lang.Integer">
+                    <defaultvalue>0</defaultvalue>
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
     </itemtypes>
 
 </items>

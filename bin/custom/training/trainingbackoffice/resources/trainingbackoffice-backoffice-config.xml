@@ -106,5 +106,17 @@
             </na:notifications>
         </na:notification-area>
     </context>
+    <context component="explorer-tree" merge-by="module" parent="auto">
+        <explorer-tree:explorer-tree>
+            <explorer-tree:navigation-node id="Warranty">
+                <explorer-tree:type-node code="Product" id="Products"/>
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+    <context type="Product" component="listview" merge-by="type">
+        <list-view:list-view>
+            <list-view:column qualifier="warrantyYears"/>
+        </list-view:list-view>
+    </context>
 
 </config>

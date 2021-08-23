@@ -49,6 +49,7 @@ AND tbl.code NOT IN({{ SELECT {code} FROM {GenericVariantProduct} }}) ORDER BY t
 
 INSERT_UPDATE SolrValueRangeSet; name[unique = true] ; qualifier; type; solrValueRanges(&rangeValueRefID)
                                ; questionsCountRange ;          ; int ; questionsCount1,questionsCount2,questionsCount3,questionsCount4,questionsCount5,questionsCount6
+                               ; warrantyYearsRange  ;          ; int ; warrantyYears0,warrantyYears1,warrantyYears2,warrantyYears3,warrantyYears4
 
 INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
                             ; questionsCount1 ; questionsCountRange                   ; 0                  ; 0   ; 0
@@ -57,12 +58,19 @@ INSERT_UPDATE SolrValueRange; &rangeValueRefID; solrValueRangeSet(name)[unique =
                             ; questionsCount4 ; questionsCountRange                   ; 3                  ; 3   ; 3
                             ; questionsCount5 ; questionsCountRange                   ; 4                  ; 4   ; 4
                             ; questionsCount6 ; questionsCountRange                   ; 5 or more          ; 5   ; 100000
+                            ; warrantyYears0  ; warrantyYearsRange                    ; 0                  ; 0   ; 0
+                            ; warrantyYears1  ; warrantyYearsRange                    ; 1                  ; 1   ; 1
+                            ; warrantyYears2  ; warrantyYearsRange                    ; 2                  ; 2   ; 2
+                            ; warrantyYears3  ; warrantyYearsRange                    ; 3                  ; 3   ; 3
+                            ; warrantyYears4  ; warrantyYearsRange                    ; 4 or more          ; 4   ; 100000
 
 INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider                 ; valueProviderParameter; facet; facetType(code); rangeSets(name)     ; facetSort(code); visible
                                  ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                                     ;                                    ; productQuestionsCountValueProvider ;                       ; true ; MultiSelectOr  ; questionsCountRange ; Alpha          ; true
+                                 ; $solrIndexedType                          ; warrantyYears      ; int       ;                   ;                          ;                           ;                            ;                                     ;                                    ;                                    ;                       ; true ; MultiSelectOr  ; warrantyYearsRange  ; Alpha          ; true
 
 INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique = true]; searchQueryTemplate(name, indexedType(identifier))[unique = true][default = DEFAULT:$solrIndexedType]; facet[default = true]; facetType(code); facetDisplayNameProvider; ftsPhraseQuery[default = false]; ftsPhraseQueryBoost; ftsQuery[default = false]; ftsQueryBoost; ftsFuzzyQuery[default = false]; ftsFuzzyQueryBoost; ftsWildcardQuery[default = false]; ftsWildcardQueryType(code)[default = POSTFIX]; ftsWildcardQueryBoost; ftsWildcardQueryMinTermLength; includeInResponse[default = true]
                                      ; questionsCount:$solrIndexedType                                  ;                                                                                                      ;                      ; MultiSelectOr  ;                         ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;                              ;
+                                     ; warrantyYears:$solrIndexedType                                   ;                                                                                                      ;                      ; MultiSelectOr  ;                         ;                                ;                    ;                          ;              ;                               ;                   ;                                  ;                                              ;                      ;                              ;
 
 INSERT_UPDATE SolrSort; indexedType(identifier)[unique = true]; code[unique = true] ; useBoost
                       ; $solrIndexedType                      ; questionsCount-asc  ; false

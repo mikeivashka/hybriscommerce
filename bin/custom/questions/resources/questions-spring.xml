@@ -60,19 +60,33 @@
         <property name="list" ref="productConverter"/>
         <property name="add" ref="productQuestionPopulator"/>
     </bean>
+    <bean id="productWarrantyYearsPopulator" class="de.hybris.training.populator.ProductWarrantyYearsPopulator"/>
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="productConverter"/>
+        <property name="add" ref="productWarrantyYearsPopulator"/>
+    </bean>
     <bean id="productQuestionsCountValueProvider"
           class="de.hybris.training.search.solrfacetsearch.provider.ProductQuestionsCountValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="rangeNameProvider" ref="defaultRangeNameProvider"/>
     </bean>
+
     <alias name="questionsCountSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
     <bean id="questionsCountSearchResultProductPopulator"
           class="de.hybris.training.populator.QuestionsCountSearchResultProductPopulator"
           parent="variantCommerceSearchResultProductPopulator"/>
-    <bean id="hybridCustomerPrepareInterceptor" class="de.hybris.training.interceptor.HybridsCustomerPrepareInterceptor">
+
+    <alias name="warrantyYearsSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+    <bean id="warrantyYearsSearchResultProductPopulator"
+          class="de.hybris.training.populator.ProductWarrantyYearsSearchResultPopulator"
+          parent="variantCommerceSearchResultProductPopulator"/>
+
+    <bean id="hybridCustomerPrepareInterceptor"
+          class="de.hybris.training.interceptor.HybridsCustomerPrepareInterceptor">
         <property name="userService" ref="userService"/>
     </bean>
-    <bean id="hybridCustomersPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+    <bean id="hybridCustomersPrepareInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
         <property name="interceptor" ref="hybridCustomerPrepareInterceptor"/>
         <property name="typeCode" value="Customer"/>
     </bean>

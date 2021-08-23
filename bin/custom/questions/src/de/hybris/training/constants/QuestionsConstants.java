@@ -18,6 +18,7 @@ public final class QuestionsConstants extends GeneratedQuestionsConstants {
     public static final String EXTENSIONNAME = "questions";
     public static final String QUESTIONS_COUNT = "questionsCount";
     public static final String HYBRIDS_USER_GROUP = "hybridsgroup";
+    public static final String WARRANTY_YEARS = "warrantyYears";
 
     private QuestionsConstants() {
         //empty to avoid instantiating this constant class
